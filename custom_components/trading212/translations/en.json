@@ -1,0 +1,106 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Trading 212 API Configuration",
+        "description": "Configure your Trading 212 API credentials. For API keys generated with a secret, provide both Key and Secret. Otherwise, provide only Key.",
+        "data": {
+          "label": "Account Label (optional)",
+          "api_key": "API Key",
+          "api_secret": "API Secret (optional)",
+          "environment": "Environment",
+          "poll_interval": "Update Interval (seconds, min 30)"
+        }
+      },
+      "permissions": {
+        "title": "API Scope & Permission Check",
+        "description": "Trading 212 API permission test results:\n\n{permission_table}\n\nEntities and features are automatically created based on the granted permissions."
+      },
+      "sensors": {
+        "title": "Select Sensors to Create",
+        "description": "Choose which position and pie sensors should be registered in Home Assistant.",
+        "data": {
+          "position_sensors": "Position Sensors",
+          "pie_sensors": "Pie Sensors"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid API Key or Secret. Please verify your credentials and environment.",
+      "cannot_connect": "Failed to connect to Trading 212 API.",
+      "rate_limit": "Rate limit reached. Please wait a moment before trying again.",
+      "invalid_poll_interval": "Update interval must be at least 30 seconds.",
+      "unknown": "Unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This Trading 212 account is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Trading 212 Options",
+        "data": {
+          "label": "Account Label",
+          "environment": "Environment",
+          "poll_interval": "Update Interval (seconds)"
+        },
+        "sections": {
+          "sensor_selection": {
+            "name": "Enabled Sensors",
+            "description": "Choose which sensor types to create for open positions and pies."
+          }
+        }
+      }
+    },
+    "error": {
+      "invalid_poll_interval": "Update interval must be at least 30 seconds."
+    }
+  },
+  "selector": {
+    "position_sensors": {
+      "options": {
+        "value": "Total Value",
+        "quantity": "Quantity",
+        "pnl": "Profit & Loss",
+        "pnl_percent": "Profit & Loss %",
+        "average_price": "Average Price",
+        "current_price": "Current Price",
+        "daily_gain_loss": "Daily Gain/Loss",
+        "daily_gain_loss_percent": "Daily Gain/Loss %"
+      }
+    },
+    "pie_sensors": {
+      "options": {
+        "value": "Total Value",
+        "invested": "Invested Amount",
+        "pnl": "Profit & Loss",
+        "pnl_percent": "Profit & Loss %",
+        "progress": "Goal Progress %",
+        "cash": "Cash in Pie",
+        "goal": "Target Goal",
+        "dividends_gained": "Total Dividends Gained",
+        "dividends_in_cash": "Dividends Paid in Cash",
+        "dividends_reinvested": "Dividends Reinvested"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "has_active_orders": {
+        "name": "Active Orders"
+      },
+      "has_open_positions": {
+        "name": "Open Positions"
+      },
+      "profitable_today": {
+        "name": "Profitable Today"
+      }
+    },
+    "button": {
+      "cancel_all_orders": {
+        "name": "Cancel All Orders"
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "has_active_orders": {
+        "default": "mdi:clipboard-text-clock"
+      },
+      "has_open_positions": {
+        "default": "mdi:chart-timeline-variant-shimmer"
+      },
+      "profitable_today": {
+        "default": "mdi:trending-up"
+      }
+    },
+    "button": {
+      "cancel_all_orders": {
+        "default": "mdi:close-octagon"
+      }
+    },
+    "sensor": {
+      "total_value": {
+        "default": "mdi:cash-multiple"
+      },
+      "cash_available": {
+        "default": "mdi:cash"
+      },
+      "cash_in_pies": {
+        "default": "mdi:chart-pie"
+      },
+      "invested": {
+        "default": "mdi:piggy-bank"
+      },
+      "unrealized_pnl": {
+        "default": "mdi:scale-balance"
+      },
+      "realized_pnl": {
+        "default": "mdi:cash-check"
+      },
+      "result_percent": {
+        "default": "mdi:percent"
+      },
+      "open_positions_count": {
+        "default": "mdi:chart-bar"
+      },
+      "active_orders_count": {
+        "default": "mdi:clipboard-clock"
+      },
+      "total_dividends": {
+        "default": "mdi:hand-coin"
+      },
+      "daily_gain_loss": {
+        "default": "mdi:swap-vertical"
+      },
+      "daily_gain_loss_percent": {
+        "default": "mdi:percent-outline"
+      },
+      "top_daily_mover": {
+        "default": "mdi:arrow-up-bold-box"
+      },
+      "bottom_daily_mover": {
+        "default": "mdi:arrow-down-bold-box"
+      },
+      "biggest_daily_gain": {
+        "default": "mdi:trending-up"
+      },
+      "biggest_daily_loss": {
+        "default": "mdi:trending-down"
+      },
+      "last_updated": {
+        "default": "mdi:clock-check-outline"
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "domain": "trading212",
+  "name": "Trading 212",
+  "codeowners": [
+    "@FaserF"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/FaserF/ha-trading212",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/FaserF/ha-trading212/issues",
+  "loggers": [
+    "trading212"
+  ],
+  "requirements": [
+    "aiohttp>=3.14.5"
+  ],
+  "version": "0.1.0"
+}

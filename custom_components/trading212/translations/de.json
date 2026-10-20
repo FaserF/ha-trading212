@@ -1,0 +1,106 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Trading 212 API Konfiguration",
+        "description": "Gib deine Trading 212 API-Anmeldedaten ein. Wenn für den Schlüssel ein Secret generiert wurde, gib beides ein. Andernfalls genügt der API-Schlüssel.",
+        "data": {
+          "label": "Konto-Bezeichnung (optional)",
+          "api_key": "API-Schlüssel",
+          "api_secret": "API-Secret (optional)",
+          "environment": "Umgebung",
+          "poll_interval": "Aktualisierungsintervall (Sekunden, mind. 30)"
+        }
+      },
+      "permissions": {
+        "title": "Berechtigungsprüfung (API Scopes)",
+        "description": "Ergebnis der Berechtigungsprüfung:\n\n{permission_table}\n\nEntitäten und Funktionen werden automatisch nur für vorhandene Berechtigungen angelegt."
+      },
+      "sensors": {
+        "title": "Sensoren auswählen",
+        "description": "Wähle aus, welche Sensoren für Positionen und Pies in Home Assistant erstellt werden sollen.",
+        "data": {
+          "position_sensors": "Positions-Sensoren",
+          "pie_sensors": "Pie-Sensoren"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Ungültiger API-Schlüssel oder Secret. Bitte überprüfe deine Anmeldedaten und Umgebung.",
+      "cannot_connect": "Verbindung zur Trading 212 API fehlgeschlagen.",
+      "rate_limit": "Ratenbegrenzung erreicht. Bitte warte einen Moment.",
+      "invalid_poll_interval": "Das Aktualisierungsintervall muss mindestens 30 Sekunden betragen.",
+      "unknown": "Unerwarteter Fehler aufgetreten."
+    },
+    "abort": {
+      "already_configured": "Dieses Trading 212 Konto ist bereits eingerichtet."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Trading 212 Optionen",
+        "data": {
+          "label": "Konto-Bezeichnung",
+          "environment": "Umgebung",
+          "poll_interval": "Aktualisierungsintervall (Sekunden)"
+        },
+        "sections": {
+          "sensor_selection": {
+            "name": "Aktivierte Sensoren",
+            "description": "Wähle aus, welche Sensortypen für offene Positionen und Pies erstellt werden sollen."
+          }
+        }
+      }
+    },
+    "error": {
+      "invalid_poll_interval": "Das Aktualisierungsintervall muss mindestens 30 Sekunden betragen."
+    }
+  },
+  "selector": {
+    "position_sensors": {
+      "options": {
+        "value": "Gesamtwert",
+        "quantity": "Stückzahl",
+        "pnl": "Gewinn / Verlust",
+        "pnl_percent": "Gewinn / Verlust %",
+        "average_price": "Durchschnittspreis",
+        "current_price": "Aktueller Kurs",
+        "daily_gain_loss": "Tagesgewinn / -verlust",
+        "daily_gain_loss_percent": "Tagesgewinn / -verlust %"
+      }
+    },
+    "pie_sensors": {
+      "options": {
+        "value": "Gesamtwert",
+        "invested": "Investierter Betrag",
+        "pnl": "Gewinn / Verlust",
+        "pnl_percent": "Gewinn / Verlust %",
+        "progress": "Zielfortschritt %",
+        "cash": "Bargeld im Pie",
+        "goal": "Zielwert",
+        "dividends_gained": "Erhaltene Dividenden",
+        "dividends_in_cash": "Dividenden als Bargeld",
+        "dividends_reinvested": "Reinvestierte Dividenden"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "has_active_orders": {
+        "name": "Aktive Aufträge"
+      },
+      "has_open_positions": {
+        "name": "Offene Positionen"
+      },
+      "profitable_today": {
+        "name": "Heute im Plus"
+      }
+    },
+    "button": {
+      "cancel_all_orders": {
+        "name": "Alle Aufträge abbrechen"
+      }
+    }
+  }
+}

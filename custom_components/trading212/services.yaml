@@ -1,0 +1,30 @@
+cancel_order:
+  name: Cancel Order
+  description: Cancels a specific open order by order ID.
+  fields:
+    order_id:
+      name: Order ID
+      description: The unique numeric or string identifier of the order to cancel.
+      required: true
+      example: 59117076157
+      selector:
+        text:
+    entry_id:
+      name: Config Entry
+      description: Target Trading 212 account entry ID (optional if only one account configured).
+      required: false
+      selector:
+        config_entry:
+          integration: trading212
+
+cancel_all_orders:
+  name: Cancel All Orders
+  description: Cancels all currently open and pending orders.
+  fields:
+    entry_id:
+      name: Config Entry
+      description: Target Trading 212 account entry ID (optional if only one account configured).
+      required: false
+      selector:
+        config_entry:
+          integration: trading212
