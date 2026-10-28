@@ -188,12 +188,3 @@ If you find this integration helpful, consider supporting development:
 
 [![Sponsor](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa.svg?style=flat-square)](https://github.com/sponsors/FaserF)
 [![Donate PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square)](https://paypal.me/FaserF)
-
----
-
-## 🔌 Recommended Hardware & Ecosystem Links
-
-| Device / Service | Integration Use Case | Link |
-| :--- | :--- | :--- |
-| **Trade Republic (Zinsen & kostenlose ETF-Sparpläne)** | Kompatibel mit Home Assistant Depot- & Cashflow-Sensoren | [Offizielle Geräte-Seite →](https://fabiseitz.de/go/tr) |
-| **Finanzfluss Copilot Dashboard** | Automatische Konto-, Depot- & Freistellungsauftrag-Synchronisation | [Offizielle Geräte-Seite →](https://fabiseitz.de/go/finanzfluss) |
