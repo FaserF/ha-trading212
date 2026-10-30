@@ -11,6 +11,7 @@ from custom_components.trading212.api.client import Trading212Client
 
 class MockSession(MagicMock):
     """Mock for aiohttp.ClientSession that can be used as an async context manager."""
+
     async def __aenter__(self):
         return self
 
