@@ -159,7 +159,9 @@ class Trading212Coordinator(DataUpdateCoordinator[CoordinatorData]):
         self._daily_baseline: dict[str, float] = {}
         self._baseline_date: date | None = None
         self._baseline_dirty: bool = False
-        self._store = Store(hass, 1, f"{DOMAIN}.{config_entry.entry_id}.baseline")
+        self._store: Store[dict[str, Any]] = Store(
+            hass, 1, f"{DOMAIN}.{config_entry.entry_id}.baseline"
+        )
         self._previous_positions: dict[str, Position] = {}
         self._previous_pies: dict[str, Pie] = {}
         self._seen_dividend_ids: set[str] = set()

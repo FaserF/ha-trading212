@@ -16,6 +16,7 @@ from homeassistant.components.sensor import (
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import PERCENTAGE
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -339,6 +340,26 @@ def _enabled_pie_attrs(
     return tuple(a for a in PIE_ATTRS if a[0] in enabled)
 
 
+def _get_account_device_id(
+    coordinator: Trading212Coordinator, config_url: str
+) -> str | None:
+    """Return the device registry ID for the parent Trading 212 account device."""
+    hass = coordinator.hass
+    if hass is None:
+        return None
+    env = coordinator.config_entry.data.get(CONF_ENVIRONMENT, ENVIRONMENT_LIVE)
+    dev_reg = dr.async_get(hass)
+    device = dev_reg.async_get_or_create(
+        config_entry_id=coordinator.config_entry.entry_id,
+        identifiers={(DOMAIN, coordinator.config_entry.entry_id)},
+        name=coordinator.config_entry.title,
+        manufacturer="Trading 212",
+        model=f"{env.title()} Trading Account",
+        configuration_url=config_url,
+    )
+    return device.id
+
+
 def _remove_disabled_entities(
     hass: HomeAssistant,
     entry: ConfigEntry,
@@ -440,6 +461,8 @@ async def async_setup_entry(
 class Trading212AccountSensor(CoordinatorEntity[Trading212Coordinator], SensorEntity):
     """Account level sensor for Trading 212."""
 
+    entity_description: Trading212SensorDescription
+
     def __init__(
         self,
         coordinator: Trading212Coordinator,
@@ -537,14 +560,16 @@ class Trading212PositionSensor(CoordinatorEntity[Trading212Coordinator], SensorE
         )
 
         # Attach position sensors to their dedicated equity sub-device
-        self._attr_device_info = DeviceInfo(
+        pos_dev_info = DeviceInfo(
             identifiers={(DOMAIN, f"{coordinator.config_entry.entry_id}_{slug}")},
             name=f"{pos_name} ({pos.ticker if pos else slug})",
             manufacturer="Trading 212",
             model="Equity Position",
-            via_device=(DOMAIN, coordinator.config_entry.entry_id),
             configuration_url=config_url,
         )
+        if (via_id := _get_account_device_id(coordinator, config_url)) is not None:
+            pos_dev_info["via_device_id"] = via_id
+        self._attr_device_info = pos_dev_info
 
     @property
     def suggested_object_id(self) -> str | None:
@@ -637,14 +662,16 @@ class Trading212PieSensor(CoordinatorEntity[Trading212Coordinator], SensorEntity
             else "https://demo.trading212.com/"
         )
 
-        self._attr_device_info = DeviceInfo(
+        pie_dev_info = DeviceInfo(
             identifiers={(DOMAIN, f"{coordinator.config_entry.entry_id}_{slug}")},
             name=f"Pie: {pie_name}",
             manufacturer="Trading 212",
             model="Investment Pie",
-            via_device=(DOMAIN, coordinator.config_entry.entry_id),
             configuration_url=config_url,
         )
+        if (via_id := _get_account_device_id(coordinator, config_url)) is not None:
+            pie_dev_info["via_device_id"] = via_id
+        self._attr_device_info = pie_dev_info
 
     @property
     def suggested_object_id(self) -> str | None:
