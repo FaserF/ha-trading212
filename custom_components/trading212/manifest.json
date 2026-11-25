@@ -13,9 +13,7 @@
   "loggers": [
     "trading212"
   ],
-  "requirements": [
-    "aiohttp==3.14.5"
-  ],
+  "requirements": [],
   "version": "0.1.0",
   "quality_scale": "platinum"
 }
